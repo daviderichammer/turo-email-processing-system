@@ -1,0 +1,7 @@
+# See man 5 aliases for format
+postmaster: root
+test: root
+admin: root
+info: root
+support: root
+debugemail: "|/usr/bin/python3 /opt/enhanced_email_processor_final.py"

@@ -1,0 +1,64 @@
+# Postfix main configuration for receive-only email server
+# Generated for doty.slicie.cloud
+
+# Basic settings
+compatibility_level = 3.6
+biff = no
+append_dot_mydomain = no
+readme_directory = no
+
+# Network settings
+inet_interfaces = all
+inet_protocols = all
+
+# Hostname and domain settings
+myhostname = doty.slicie.cloud
+mydomain = slicie.cloud
+myorigin = $mydomain
+mydestination = $myhostname, doty.slicie.cloud, localhost.slicie.cloud, localhost
+
+# Network restrictions (receive-only server)
+mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+relayhost = 
+relay_domains = 
+
+# Disable outbound mail (receive-only)
+default_transport = error
+relay_transport = error
+
+# Mail storage and processing
+mailbox_size_limit = 0
+recipient_delimiter = +
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+
+# Security settings
+smtpd_banner = $myhostname ESMTP
+disable_vrfy_command = yes
+smtpd_helo_required = yes
+
+# Rate limiting
+smtpd_client_connection_count_limit = 10
+smtpd_client_connection_rate_limit = 30
+
+# Email processing pipeline
+# Route all emails to our Python processor
+transport_maps = 
+email_processor_destination_recipient_limit = 1
+
+# TLS settings (optional but recommended)
+smtpd_use_tls = yes
+smtpd_tls_cert_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_tls_security_level = may
+smtpd_tls_auth_only = no
+
+# Logging
+maillog_file = /var/log/postfix.log
+virtual_mailbox_domains = reademail.ai, mail.reademail.ai
+virtual_mailbox_maps = hash:/etc/postfix/virtual_mailboxes
+virtual_alias_maps = hash:/etc/postfix/virtual_aliases
+virtual_mailbox_base = /var/mail/virtual
+virtual_minimum_uid = 100
+virtual_uid_maps = static:5000
+virtual_gid_maps = static:5000
