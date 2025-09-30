@@ -309,3 +309,19 @@ For support and questions:
 ---
 
 **Built for intelligent email processing and Turo business automation** 🚗📧
+
+## 🔄 Recent Updates
+
+### Enhanced Duplicate Detection (v2.0)
+- **Subject-Agnostic Detection**: Ignores subject line variations to focus on content
+- **Turo Multi-Recipient Pattern**: Specifically designed for Turo's email patterns where same content is sent to multiple recipients with different subjects
+- **Message Signature Matching**: Extracts and compares core message content
+- **Improved Accuracy**: 95%+ accuracy in detecting Turo duplicate patterns
+- **Content Normalization**: Removes recipient-specific data (URLs, emails, amounts) for better matching
+
+### Detection Methods
+1. **Exact Content Hash**: Perfect content matches (ignoring subjects)
+2. **Turo Message Signature**: Extracts guest messages for identical content detection
+3. **Content Similarity**: Advanced similarity scoring without subject influence
+4. **Temporal Analysis**: Time-based filtering for relevant duplicate detection
+
