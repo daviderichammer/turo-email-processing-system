@@ -1,0 +1,17 @@
+[Unit]
+Description=Email Parsing Service (v2 - Best Match Only)
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/email-system
+ExecStart=/usr/bin/python3 /root/email-system/scripts/email_parsing_service_v2.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/root/email-system/logs/parsing_service.log
+StandardError=append:/root/email-system/logs/parsing_service.log
+
+[Install]
+WantedBy=multi-user.target
